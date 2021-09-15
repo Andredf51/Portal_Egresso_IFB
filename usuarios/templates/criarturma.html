@@ -1,0 +1,17 @@
+{% extends "base_usuario.html" %}
+
+{% block body %}
+
+<h3> Cadastro </h3>
+  <form action="" method="POST">
+
+    
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn_primary">Cadastrar</button>
+
+  </form>
+
+{% endblock %}

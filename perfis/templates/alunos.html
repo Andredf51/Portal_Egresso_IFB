@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+
+{% block body %}
+<div class="row">
+    <div class="col-lg-12">
+        <h2 style="margin-top:0">{{alunos.nome}}</h2>
+        <address>
+          <strong>{{perfil.nome_empresa}}</strong><br>
+          <a href="mailto:{{alunos.email}}">{{alunos.email}}</a>
+          <p> {{alunos.cargo_atual}} </p>
+          {{alunos.empresa_atual}}
+          {{alunos.rede_social}}
+          {{alunos.lattes}}
+          {{alunos.interesses}}
+          {{alunos.relato_pessoal}}
+
+        </address>
+       
+    </div>
+</div>
+{% endblock %}

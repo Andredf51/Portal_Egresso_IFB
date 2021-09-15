@@ -1,0 +1,46 @@
+
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="col-lg-12">
+    <h1>Cursos do IFB</h1>
+    <br>
+
+    <h2> Cursos Superiores</h2>
+    <br>
+
+    {% for perfil in perfis %}
+
+    <div class="card">
+        <h5 class="card-header">{{perfil.nome}}</h5>
+        <div class="card-body">
+          <h5 class="card-title">{{perfil.nivel}}</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="{% url 'exibir_turma' %}" class="btn btn-primary">Ir para {{perfil.nome}}</a>
+        </div>
+    </div>
+    <br>
+
+    {% endfor %}
+
+    <h2> Cursos Técnicos</h2>
+    <br>
+
+    {% for perfil in perfis %}
+
+    <div class="card">
+        <h5 class="card-header">{{perfil.nome}}</h5>
+        <div class="card-body">
+          <h5 class="card-title">{{perfil.nivel}}</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="{% url 'exibir_turma' %}" class="btn btn-primary">Ir para {{perfil.nome}}</a>
+        </div>
+    </div>
+    <br>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

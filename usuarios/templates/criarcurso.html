@@ -1,0 +1,36 @@
+{% extends "base_usuario.html" %}
+
+{% block body %}
+
+  <form class="form-signin" action="{% url 'criarcurso' %}" method="post">
+
+    {% csrf_token %}
+
+    <h2 class="form-signin-heading">Criar Cursos</h2>
+
+    <input type="text" id="id_nome" name="nome" class="form-control" placeholder="Nome *" required autofocus>
+
+    <input type="text" id="id_nivel" name="nivel" class="form-control" placeholder="Nivel">
+
+    <input type="text" id="id_campus" name="campus" class="form-control" placeholder="Campus">
+
+    <hr />
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Salvar</button>
+
+<!-- if novo aqui -->
+
+    <hr/>
+
+     {% if form.errors %}
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{form.non_field_errors}}
+      </div>
+    {% endif %}
+
+<!-- fim if novo -->
+
+  </form>
+
+{% endblock %}

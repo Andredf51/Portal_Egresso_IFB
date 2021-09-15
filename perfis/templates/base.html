@@ -1,0 +1,30 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <title>experienceIn</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class=""><a href="{% url 'index' %}">Nome</a></li>
+          <li class=""><a href="/coordenador">Coordenador</a></li>
+          <li class=""><a href="/logout/">Logout</a></li>
+        </ul>
+        <h3 class="text-muted">Portal De Egresso IFB</h3>
+      </div>
+
+      <div class="row content">
+         {% block body %}
+         <!-- conteúdo da página entraria aqui -->
+         {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>
