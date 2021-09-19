@@ -11,20 +11,31 @@
   </head>
   <body>
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class=""><a href="{% url 'index' %}">Nome</a></li>
-          <li class=""><a href="/coordenador">Coordenador</a></li>
-          <li class=""><a href="/logout/">Logout</a></li>
-        </ul>
-        <h3 class="text-muted">Portal De Egresso IFB</h3>
-      </div>
+
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #469536;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                  aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="#">Egresso</a>
+              <a class="nav-link" href="/coordenador">Coordenador</a>
+              <a class="nav-link" href="#">Logout</a>
+              <a class="nav-link disabled">Disabled</a>
+            </div>
+          </div>
+        </div>
+      </nav>
 
       <div class="row content">
          {% block body %}
          <!-- conteúdo da página entraria aqui -->
          {% endblock %}
       </div>
+
     </div>
   </body>
 </html>

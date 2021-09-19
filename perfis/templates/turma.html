@@ -5,15 +5,22 @@
 
 <h1>Turmas:</h1>
 <br>
+<p>
+    Página com a lista de turmas do curso selecionado:
+</p>
 
-<div class="row">
-    <div class="col-lg-12">
-        <h2 style="margin-top:0">{{turma.periodo}}</h2>
-        <address>
-          nome: {{turma.periodo}}, 
-          Data: {{turma.data_formatura}}, 
-          foto: {{turma.email}},  
-        </address>
+{% for turma in turmas %}
+
+    <div class="card">
+        <h5 class="card-header">Período: {{turma.periodo}}</h5>
+        <div class="card-body">
+            <h5 class="card-title">Curso: {{turma.curso}}</h5>
+            <p class="card-text">Data da formatura: {{turma.data_formatura}}</p>
+            <p class="card-text">Foto: {{turma.foto}}</p>
+            <a href="/egressos" class="btn btn-success">Ver Egressos</a>
+        </div>
     </div>
-</div>
+
+{% endfor %}
+
 {% endblock %}
