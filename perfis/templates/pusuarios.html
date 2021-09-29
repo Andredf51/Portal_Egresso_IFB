@@ -1,0 +1,32 @@
+<!--Página com lista de todos os alunos de determinada turma-->
+{% extends "base.html" %}
+
+{% block body %}
+
+<h2>Egressos IFB</h2>
+<br>
+<p>
+    Página com informações dos nossos egressos:
+</p>
+
+{% for egresso in usuarios %}
+
+    <div class="card">
+        <h5 class="card-header">{{egresso.nome}}</h5>
+        <div class="card-body">
+            <h5 class="card-title">Cargo Atual: {{egresso.cargo_atual}}</h5>
+            <p class="card-text">Empresa Atual: {{egresso.empresa_atual}}</p>
+            <p class="card-text">Rede Social: {{egresso.rede_social}}</p>
+            <p class="card-text">Lattes: {{egresso.lattes}}</p>
+            <p class="card-text">Interesses: {{egresso.interesses}}</p>
+            <p class="card-text">Relato Pessoal: {{egresso.relato_pessoal}}</p>
+            <br>
+            <a class="btn btn-warning" href="{% url 'upd_usuario' egresso.pk %}">Editar</a>
+            <a class="btn btn-danger" href="#">Deletar</a>
+        </div>
+    </div>
+
+
+{% endfor %}
+
+{% endblock %}

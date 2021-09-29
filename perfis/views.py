@@ -4,22 +4,25 @@ from perfis.models import Alunos, Curso, Turma
 
 from django.views.generic import TemplateView
 
+# novas importações, pode ser as únicas
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
+
 # Create your views here.
 
-def index(request):
-    superior = Curso.objects.get(id=1)
-    tecnico = Curso.objects.all()
-    return render(request, 'index.html', {'perfis' : tecnico})
+class IndexView(ListView):
+    models = Curso
+    template_name = 'index.html'
+    queryset = Curso.objects.all()
+    context_object_name = 'perfis'
+
 
 def exibir(request, perfil_id):
 
     alunos = Alunos.objects.get(id=perfil_id)
     return render(request, 'alunos.html', { "alunos" : alunos})
-
-
-def exibir_turma(request):
-    turma = Turma.objects.get(id=2)
-    return render(request, 'turma.html', {"turma" : turma})
 
 
 class CoordenadorView(TemplateView):
@@ -29,7 +32,7 @@ class CoordenadorView(TemplateView):
 class TurmaView(generic.ListView):
     template_name = 'turma.html'
     model = Turma
-    queryset = Turma.objects.filter(id=2)
+    queryset = Turma.objects.all()
     context_object_name = 'turmas'
 
 
@@ -38,6 +41,8 @@ class EgressoView(generic.ListView):
     model = Alunos
     queryset = Alunos.objects.all()
     context_object_name = 'egressos'
+
+
 
 #passos para criar uma aplicação
 #1° View - importa o TemplateView

@@ -1,0 +1,20 @@
+{% extends "base_usuario.html" %}
+{% load bootstrap %}
+
+{% block content %}
+
+  <form method="post">
+    {% csrf_token %}
+    <br>
+    <p>Tem certeza que deseja deletar a turma "{{ object }}"?</p>
+
+    <hr>
+    <button type="submit" class="btn btn-danger">Confirmar</button>
+    <button type="button" class="btn btn-warning">
+      <a href="{% url 'index' %}">Cancelar</a>
+    </button>
+
+
+  </form>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+
+{% extends "base.html" %}
+
+{% block body %}
+<p>Gerenciar Turmas</p>
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="card">
+            <div class="card-header">
+                Gerenciar Turmas
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Área dedicada a criação de novas turmas do IFB.</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="/criarturma" class="btn btn-primary">Criar Turma</a>
+            </div>
+        </div>
+        <br>
+
+       
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <h2>Lista de cursos do IFB</h2>
+    <br>
+
+    {% for listarturma in listarturmas %}
+
+    <div class="card">
+        <h5 class="card-header">{{listarturma.periodo}}</h5>
+        <div class="card-body">
+          <h5 class="card-title">Curso: {{listarturma.curso}}</h5>
+          <h5 class="card-title">Data da Formatura: {{listarturma.data_formatura}}</h5>
+          <h5 class="card-title">Foto da Turma: {{listarturma.foto}}</h5>
+            <a class="btn btn-warning" href="{% url 'upd_turma' listarturma.pk%}">Editar</a>
+            <a class="btn btn-danger" href="{% url 'del_turma' listarturma.pk%}">Delete</a>
+
+        </div>
+    </div>
+    <br>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

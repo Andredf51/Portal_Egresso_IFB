@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'perfis',
     'usuarios',
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [

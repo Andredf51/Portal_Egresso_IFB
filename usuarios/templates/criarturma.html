@@ -1,16 +1,19 @@
 {% extends "base_usuario.html" %}
+{% load bootstrap %}
 
-{% block body %}
+{% block content %}
 
-<h3> Cadastro </h3>
-  <form action="" method="POST">
+<h3> Criar uma turma nova! </h3>
+  <form method="POST">
 
-    
     {% csrf_token %}
 
-    {{ form.as_p }}
-
-    <button type="submit" class="btn btn_primary">Cadastrar</button>
+    {{ form|bootstrap }}
+    <hr>
+    <button type="submit" class="btn btn-primary">Criar</button>
+    <button type="button" class="btn btn-warning">
+      <a href="{% url 'index' %}">Cancelar</a>
+    </button>
 
   </form>
 

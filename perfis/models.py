@@ -25,6 +25,7 @@ class Alunos(models.Model):
     def __str__(self):
         return self.nome
 
+
 class Curso(models.Model):
 
     nome = models.CharField(max_length=255, null=False)
@@ -33,6 +34,7 @@ class Curso(models.Model):
 
     def __str__(self):
         return self.nome
+
 
 class Turma(models.Model):
 
