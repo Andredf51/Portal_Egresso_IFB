@@ -15,8 +15,19 @@ from django.urls import reverse_lazy
 class IndexView(ListView):
     models = Curso
     template_name = 'index.html'
-    queryset = Curso.objects.all()
-    context_object_name = 'perfis'
+    queryset = Curso.objects.filter(nivel='Superior')
+    context_object_name = 'texto'
+
+
+def listacursosview(request, curso_id):
+    indexcursos = Curso.objects.filter(nivel=curso_id)
+    return render(request, 'listacursos.html', { "indexcursos" : indexcursos})
+
+# class IndexView(ListView):
+#     models = Curso
+#     template_name = 'index.html'
+#     queryset = Curso.objects.filter(nivel='Superior')
+#     context_object_name = 'perfis'
 
 
 def exibir(request, perfil_id):

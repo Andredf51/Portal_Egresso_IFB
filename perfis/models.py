@@ -27,9 +27,15 @@ class Alunos(models.Model):
 
 
 class Curso(models.Model):
+    NIVEL_CHOICES = (
+        ('Superior', 'Superior (Bacharelado / Licenciatura)'),
+        ('Superior', 'Superior (Tecnologia)'),
+        ('Tecnico', 'Técnico (Integrado)'),
+        ('Tecnico', 'Técnico(Subsequente)'),
+    )
 
     nome = models.CharField(max_length=255, null=False)
-    nivel = models.CharField(max_length=255, null=False)
+    nivel = models.CharField(max_length=255, choices=NIVEL_CHOICES, null=False)
     campus = models.CharField(max_length=255, null=False)
 
     def __str__(self):

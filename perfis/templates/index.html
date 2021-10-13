@@ -8,40 +8,31 @@
     <h4>Bem vindo ao sistema de Portal de Egresso do IFB, aqui você encontra os cursos oferecidos pelo instituto.</h4>
     <br>
 
-    <h2> Cursos Superiores</h2>
+    <h2> Cursos por níveis </h2>
     <br>
 
-    {% for perfil in perfis %}
-
     <div class="card">
-        <h5 class="card-header">{{perfil.nome}}</h5>
+        <h5 class="card-header">Cursos Superiores</h5>
         <div class="card-body">
-          <h5 class="card-title">{{perfil.nivel}}</h5>
-          <p class="card-text">Lista de cursos superiores do IFB.</p>
-          <a href="{% url 'exibir_turma' %}" class="btn btn-success">Ir para {{perfil.nome}}</a>
+          <h5 class="card-title">Cursos disponíveis no IFB de nível superios</h5>
+          <a href="{% url 'lista2' 'Superior' %}" class="btn btn-success">Ir para </a>
         </div>
     </div>
     <br>
 
-    {% endfor %}
-
-    <h2> Cursos Técnicos</h2>
-    <br>
-
-    {% for perfil in perfis %}
-
     <div class="card">
-        <h5 class="card-header">{{perfil.nome}}</h5>
+        <h5 class="card-header">Cursos Técnico</h5>
         <div class="card-body">
-          <h5 class="card-title">{{perfil.nivel}}</h5>
-          <p class="card-text">Lista de cursos Técnicos do IFB.</p>
-          <a href="{% url 'exibir_turma' %}" class="btn btn-primary">Ir para {{perfil.nome}}</a>
+          <h5 class="card-title">Cursos disponíveis no IFB de nível superios</h5>
+          <a href="{% url 'lista2' 'Tecnologia' %}" class="btn btn-success">Ir para </a>
         </div>
     </div>
     <br>
 
-    {% endfor %}
+
 
 </div>
 
 {% endblock %}
+
+<!--Lembrar de mudar os nomes dos cursos, para ficar igual a model-->
