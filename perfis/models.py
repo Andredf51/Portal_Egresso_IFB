@@ -48,7 +48,7 @@ class Turma(models.Model):
     data_formatura = models.CharField(max_length=255, null=False)
     foto = models.CharField(max_length=255, null=False)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
-    alunos = models.ManyToManyField(Alunos)
+    alunos = models.ManyToManyField(Alunos, related_name='turmaa')
 
     def __str__(self):
         return self.periodo

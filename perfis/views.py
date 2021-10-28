@@ -40,18 +40,16 @@ class CoordenadorView(TemplateView):
     template_name = 'pcoordenador.html'
 
 
-class TurmaView(generic.ListView):
-    template_name = 'turma.html'
-    model = Turma
-    queryset = Turma.objects.all()
-    context_object_name = 'turmas'
+def listarturmasview(request, turma_id):
+    turmas2 = Turma.objects.filter(curso=turma_id)
+    return render(request, 'turma.html', { "turmas2" : turmas2})
 
 
-class EgressoView(generic.ListView):
-    template_name = 'pegresso.html'
-    model = Alunos
-    queryset = Alunos.objects.all()
-    context_object_name = 'egressos'
+def listaregressoview(request, egresso_id):
+    egressos1 = Alunos.objects.filter(turmaa__id=egresso_id)
+
+    return render(request, 'pegresso.html', { "egressos1" : egressos1})
+
 
 
 
@@ -59,3 +57,19 @@ class EgressoView(generic.ListView):
 #1° View - importa o TemplateView
 #2° criar a class
 #3° URL
+
+# def listarturmasview(request, turma_id):
+#     turmas2 = Turma.objects.filter(curso=turma_id)
+#     return render(request, 'turma.html', { "turmas2" : turmas2})
+
+# class TurmaView(generic.ListView):
+#     template_name = 'turma.html'
+#     model = Turma
+#     queryset = Turma.objects.all()
+#     context_object_name = 'turmas'
+
+# class EgressoView(generic.ListView):
+#     template_name = 'pegresso.html'
+#     model = Alunos
+#     queryset = Alunos.objects.all()
+#     context_object_name = 'egressos'

@@ -18,7 +18,7 @@
         <div class="card-body">
           <h5 class="card-title">{{indexcurso.nivel}}</h5>
           <p class="card-text">Lista de cursos superiores do IFB.</p>
-          <a href="{% url 'exibir_turma' %}" class="btn btn-success">Ir para {{indexcurso.nome}}</a>
+          <a href="{% url 'exibir_turma2' indexcurso.id %}" class="btn btn-success">Ir para {{indexcurso.nome}}</a>
         </div>
     </div>
     <br>
@@ -29,3 +29,4 @@
 </div>
 
 {% endblock %}
+
