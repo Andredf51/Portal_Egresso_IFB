@@ -9,19 +9,23 @@
     Página com a lista de turmas do curso selecionado:
 </p>
 
-{% for turma in turmas2 %}
+{% if turmas2%}
+    {% for turma in turmas2 %}
 
-    <div class="card">
-        <h5 class="card-header">Período: {{turma.periodo}}</h5>
-        <div class="card-body">
-            <h5 class="card-title">Curso: {{turma.curso}}</h5>
-            <p class="card-text">Data da formatura: {{turma.data_formatura}}</p>
-            <p class="card-text">Foto: {{turma.foto}}</p>
-            <p class="card-text">Foto: {{turma.curso.nivel}}</p>
-            <a href="{% url 'exibir_egresso' turma.id %}" class="btn btn-success">Ver Egressos</a>
+        <div class="card">
+            <h5 class="card-header">Período: {{turma.periodo}}</h5>
+            <div class="card-body">
+                <h5 class="card-title">Curso: {{turma.curso}}</h5>
+                <p class="card-text">Data da formatura: {{turma.data_formatura}}</p>
+                <p class="card-text">Foto: {{turma.foto}}</p>
+                <p class="card-text">Foto: {{turma.curso.nivel}}</p>
+                <a href="{% url 'exibir_egresso' turma.id %}" class="btn btn-success">Ver Egressos</a>
+            </div>
         </div>
-    </div>
 
-{% endfor %}
+    {% endfor %}
+{% else %}
+    <p><strong>Não temos turmas cadastradas neste curso ainda!</strong></p>
+{% endif %}
 
 {% endblock %}
