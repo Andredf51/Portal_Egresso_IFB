@@ -14,7 +14,14 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import RegistrarUsuarioForm, CriarTurmaForm, CursoModelForm
 
+# Autenticando com Mixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+# Autentificação por grupos de usuários
+from braces.views import GroupRequiredMixin
+
+
+################# Alunos ###############################
 class GerenciarAlunosView(ListView):
     models = Alunos
     template_name = 'gerenciar_alunos.html'
@@ -69,6 +76,10 @@ class DeleteAlunoView(DeleteView):
     success_url = reverse_lazy('gerenciaraluno')
 
 
+################# Coordenador ###############################
+
+
+################# Cursos ###############################
 class GerenciarCursosView(ListView):
     models = Curso
     template_name = 'gerenciar_cursos.html'
@@ -76,26 +87,33 @@ class GerenciarCursosView(ListView):
     context_object_name = 'listarcursos'
 
 
-class CreateCursosView(CreateView):
+class CreateCursosView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('login')
+    group_required = u"Coordenador"
     model = Curso
     template_name = 'criarcurso.html'
     fields = ['nome', 'nivel', 'campus']
     success_url = reverse_lazy('gerenciarcurso')
 
 
-class UpdateCursoView(UpdateView):
+class UpdateCursoView(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('login')
+    group_required = u"Coordenador"
     model = Curso
     template_name = 'criarcurso.html'
     fields = ['nome', 'nivel', 'campus']
     success_url = reverse_lazy('gerenciarcurso')
 
 
-class DeleteCursoView(DeleteView):
+class DeleteCursoView(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('login')
+    group_required = u"Coordenador"
     model = Curso
     template_name = 'del_curso.html'
     success_url = reverse_lazy('gerenciarcurso')
 
 
+################# Turmas ###############################
 class GerenciarTurmaView(ListView):
     models = Turma
     template_name = 'gerenciar_turma.html'
@@ -103,21 +121,27 @@ class GerenciarTurmaView(ListView):
     context_object_name = 'listarturmas'
 
 
-class CreateTurmaView(CreateView):
+class CreateTurmaView(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('login')
+    group_required = u"Coordenador"
     model = Turma
     fields = ['periodo', 'data_formatura', 'foto', 'curso', 'alunos']
     template_name = 'criarturma.html'
     success_url = reverse_lazy('gerenciarturma')
 
 
-class UpdateTurmaView(UpdateView):
+class UpdateTurmaView(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('login')
+    group_required = u"Coordenador"
     model = Turma
     fields = ['periodo', 'data_formatura', 'foto', 'curso', 'alunos']
     template_name = 'criarturma.html'
     success_url = reverse_lazy('gerenciarturma')
 
 
-class DeleteTurmaView(DeleteView):
+class DeleteTurmaView(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('login')
+    group_required = u"Coordenador"
     model = Turma
     template_name = 'del_turma.html'
     success_url = reverse_lazy('gerenciarturma')

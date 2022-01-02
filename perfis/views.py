@@ -9,8 +9,14 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
+from django.views.generic import TemplateView
 
-# Create your views here.
+# Autenticando com Mixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+# Autentificação por grupos de usuários
+from braces.views import GroupRequiredMixin
+
 
 class IndexView(ListView):
     models = Curso
@@ -36,7 +42,10 @@ def exibir(request, perfil_id):
     return render(request, 'alunos.html', { "alunos" : alunos})
 
 
-class CoordenadorView(TemplateView):
+# rota protegida, somente com login, somente grupo Coordenador
+class CoordenadorView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
+    login_url = reverse_lazy('login')
+    group_required = u"Coordenador"
     template_name = 'pcoordenador.html'
 
 
@@ -49,8 +58,6 @@ def listaregressoview(request, egresso_id):
     egressos1 = Alunos.objects.filter(turmaa__id=egresso_id)
 
     return render(request, 'pegresso.html', { "egressos1" : egressos1})
-
-
 
 
 #passos para criar uma aplicação

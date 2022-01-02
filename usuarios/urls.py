@@ -1,6 +1,9 @@
 from django.urls import path
 from usuarios.views import CreateUsuarioView, CreateCursosView, DeleteCursoView, DeleteTurmaView, DeleteAlunoView
 
+# Usar para autentificações
+from django.contrib.auth import views as auth_views
+
 from .views import CreateTurmaView, GerenciarCursosView, UpdateCursoView, GerenciarTurmaView, UpdateTurmaView, GerenciarAlunosView
 
 urlpatterns = [
@@ -16,4 +19,10 @@ urlpatterns = [
     path('<int:pk>/updatec/', UpdateCursoView.as_view(), name='upd_curso'),
     path('<int:pk>/deletec/', DeleteCursoView.as_view(), name='del_curso'),
 
+    # Autentificação de usuários
+    path('login/', auth_views.LoginView.as_view(template_name='login_autentificado.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
+
+# Usar para autentificações - Código original
+# path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login')
