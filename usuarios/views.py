@@ -1,18 +1,20 @@
 from django.shortcuts import redirect
 from django.shortcuts import render
-from django.contrib.auth.models import User
 from django.views.generic.base import View
 from perfis.models import Alunos, Curso, Turma
 
 from django.views.generic import FormView
 
-# teste de create
-from django.urls import reverse_lazy
-
 # Novo formato resumido
 from django.views.generic import ListView
+
+# Criação de usuários e CRUD(Novo)
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import RegistrarUsuarioForm, CriarTurmaForm, CursoModelForm
+from django.contrib.auth.models import User, Group
+from .forms import CoordenadorForm, RegistrarUsuarioForm, CriarTurmaForm, CursoModelForm
+from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
+from .models import PerfilCoordenador
 
 # Autenticando com Mixin
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -77,6 +79,34 @@ class DeleteAlunoView(DeleteView):
 
 
 ################# Coordenador ###############################
+class CoodenadorCreate(CreateView):
+    template_name = 'criar_coordenador.html'
+    form_class = CoordenadorForm
+    success_url = reverse_lazy('index')
+
+    # metodo para submeter formulários
+    def form_valid(self, form):
+        grupo = get_object_or_404(Group, name='Egresso')
+
+        url = super().form_valid(form)
+
+        self.object.groups.add(grupo)
+        self.object.save()
+
+        PerfilCoordenador.objects.create(usuario=self.object)
+
+        return url
+
+
+class CoordenadorUpdate(UpdateView):
+    template_name = 'criar_coordenador.html'
+    model = PerfilCoordenador
+    fields = ['nome_completo', 'curso', 'telefone']
+    success_url = reverse_lazy('index')
+
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(PerfilCoordenador, usuario=self.request.user)
+        return self.object
 
 
 ################# Cursos ###############################

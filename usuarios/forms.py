@@ -1,9 +1,12 @@
 from django import forms
-from django.contrib.auth.models import User
 from perfis.models import Alunos, Curso, Turma
 
-#Os atributos das classes são os mesmo do formulário (atributo nome)
+# Importações necessárias para formulário de usuários
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
+
+#Os atributos das classes são os mesmo do formulário (atributo nome)
 
 class RegistrarUsuarioForm(forms.Form):
     email = forms.EmailField(required=True)
@@ -33,6 +36,15 @@ class RegistrarUsuarioForm(forms.Form):
     def adiciona_erro(self, message):
         errors = self._errors.setdefault(forms.forms.NON_FIELD_ERRORS, forms.utils.ErrorList())
         errors.append(message)
+
+
+# Formulário para coordenador
+class CoordenadorForm(UserCreationForm):
+    email = forms.EmailField(max_length=100)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
 
 
 class CriarTurmaForm(forms.Form):

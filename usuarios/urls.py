@@ -4,16 +4,24 @@ from usuarios.views import CreateUsuarioView, CreateCursosView, DeleteCursoView,
 # Usar para autentificações
 from django.contrib.auth import views as auth_views
 
-from .views import CreateTurmaView, GerenciarCursosView, UpdateCursoView, GerenciarTurmaView, UpdateTurmaView, GerenciarAlunosView
+from .views import CreateTurmaView, GerenciarCursosView, UpdateCursoView, GerenciarTurmaView, UpdateTurmaView, \
+    GerenciarAlunosView, CoodenadorCreate, CoordenadorUpdate
 
 urlpatterns = [
+    # Criar usuários
     path('gerenciaraluno/', GerenciarAlunosView.as_view(), name='gerenciaraluno'),
     path('registrar/', CreateUsuarioView.as_view(), name='registrar'),
     path('<int:pk>/deletea/', DeleteAlunoView.as_view(), name='del_aluno'),
+    path('criarcoordenador/', CoodenadorCreate.as_view(), name='criar_coordenador'),
+    path('updatecoordenador/', CoordenadorUpdate.as_view(), name='upd_coordenador'),
+
+    # Gerenciar Turma
     path('gerenciarturma/', GerenciarTurmaView.as_view(), name='gerenciarturma'),
     path('criarturma/', CreateTurmaView.as_view(), name='criarturma'),
     path('<int:pk>/updatet/', UpdateTurmaView.as_view(), name='upd_turma'),
     path('<int:pk>/deletet/', DeleteTurmaView.as_view(), name='del_turma'),
+
+    # Gerenciar Cursos
     path('criarcurso/', CreateCursosView.as_view(), name='criarcurso'),
     path('gerenciarcurso/', GerenciarCursosView.as_view(), name='gerenciarcurso'),
     path('<int:pk>/updatec/', UpdateCursoView.as_view(), name='upd_curso'),
