@@ -49,6 +49,13 @@ class CoordenadorView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = 'pcoordenador.html'
 
 
+# rota protegida, somente com login, somente grupo egresso
+class EgressoupdView(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
+    login_url = reverse_lazy('login_aluno')
+    group_required = u"Egresso"
+    template_name = 'pegresso_gerenciar.html'
+
+
 def listarturmasview(request, turma_id):
     turmas2 = Turma.objects.filter(curso=turma_id)
     return render(request, 'turma.html', { "turmas2" : turmas2})

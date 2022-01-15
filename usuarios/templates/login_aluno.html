@@ -1,0 +1,54 @@
+{% extends "base_usuario.html" %}
+
+{% load static %}
+{% load bootstrap %}
+
+{% block content %}
+
+<div class="row">
+
+    {% if request.user.is_authenticated %}
+    <div class="col-md mx-auto">
+        <h3>Ação não permitida</h3>
+        <hr>
+        <p class="lead">
+            <strong>
+                Houve algum problema para processar a ação desejada ou você não tem permissão para isso.
+            </strong>
+        </p>
+    </div>
+    {% else %}
+
+    <div class="col-md-4 mx-auto">
+
+        <h3>Autenticação de egressos</h3>
+
+        <hr>
+
+        <form class="form-signin" role="form" action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+
+            <input type="text" id="id_username" name="username" class="form-control" placeholder="Nome" required autofocus>
+
+            <input type="password" id="id_password" name="password" class="form-control" placeholder="Senha" required>
+
+            <br>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Login</button>
+
+            <input type="hidden" name="next" value="{{ next }}" />
+
+            {% if form.errors %}
+              <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Por favor, verifique o Email e/ou Senha informados
+              </div>
+            {% endif %}
+
+            <a href="{% url 'registrar' %}">registre-se</a>
+        </form>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,19 +1,20 @@
 from django.urls import path
-from usuarios.views import CreateUsuarioView, CreateCursosView, DeleteCursoView, DeleteTurmaView, DeleteAlunoView
+from usuarios.views import CreateUsuario, CreateCursosView, DeleteCursoView, DeleteTurmaView, DeleteAlunoView
 
 # Usar para autentificações
 from django.contrib.auth import views as auth_views
 
 from .views import CreateTurmaView, GerenciarCursosView, UpdateCursoView, GerenciarTurmaView, UpdateTurmaView, \
-    GerenciarAlunosView, CoodenadorCreate, CoordenadorUpdate
+    GerenciarAlunosView, CoodenadorCreate, CoordenadorUpdate, AlunoUpdate
 
 urlpatterns = [
     # Criar usuários
     path('gerenciaraluno/', GerenciarAlunosView.as_view(), name='gerenciaraluno'),
-    path('registrar/', CreateUsuarioView.as_view(), name='registrar'),
+    path('registrar/', CreateUsuario.as_view(), name='registrar'),
     path('<int:pk>/deletea/', DeleteAlunoView.as_view(), name='del_aluno'),
     path('criarcoordenador/', CoodenadorCreate.as_view(), name='criar_coordenador'),
     path('updatecoordenador/', CoordenadorUpdate.as_view(), name='upd_coordenador'),
+    path('updatealuno/', AlunoUpdate.as_view(), name='upd_aluno'),
 
     # Gerenciar Turma
     path('gerenciarturma/', GerenciarTurmaView.as_view(), name='gerenciarturma'),
@@ -29,6 +30,7 @@ urlpatterns = [
 
     # Autentificação de usuários
     path('login/', auth_views.LoginView.as_view(template_name='login_autentificado.html'), name='login'),
+    path('loginaluno/', auth_views.LoginView.as_view(template_name='login_aluno.html'), name='login_aluno'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
 

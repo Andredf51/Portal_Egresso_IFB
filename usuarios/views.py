@@ -31,45 +31,36 @@ class GerenciarAlunosView(ListView):
     context_object_name = 'listaralunos'
 
 
-class CreateUsuarioView(View):
-    model = Alunos
+# Teste de uso da CreateView
+class CreateUsuario(CreateView):
     template_name = 'registrar.html'
+    form_class = RegistrarUsuarioForm
+    success_url = reverse_lazy('index')
 
-    def get(self, request):
-        return render(request, self.template_name)
+    # metodo para submeter formulários
+    def form_valid(self, form):
+        grupo = get_object_or_404(Group, name='Egresso')
 
-    def post(self, request):
-        # preenche o from
-        form = RegistrarUsuarioForm(request.POST)
+        url = super().form_valid(form)
 
-        # verifica se é valido
-        if form.is_valid():
-            dados_form = form.data
+        self.object.groups.add(grupo)
+        self.object.save()
 
-            # cria o usuario
-            usuario = User.objects.create_user(dados_form['nome'], dados_form['email'], dados_form['senha'])
+        Alunos.objects.create(usuario=self.object)
 
-            # cria o perfil
-            alunos = Alunos(nome=dados_form['nome'],
-                            foto=dados_form['foto'],
-                            cargo_atual=dados_form['cargo'],
-                            empresa_atual=dados_form['empresa'],
-                            rede_social=dados_form['rede'],
-                            lattes=dados_form['lattes'],
-                            interesses=dados_form['interesses'],
-                            relato_pessoal=dados_form['relato'],
+        return url
 
-                            usuario=usuario)
 
-            # grava no banco
-            alunos.save()
+# Precisa ajustar pois está criando outro usuario e não atualizando
+class AlunoUpdate(UpdateView):
+    template_name = 'registrar.html'
+    model = Alunos
+    fields = ['nome', 'cargo_atual', 'empresa_atual', 'rede_social', 'lattes', 'interesses', 'relato_pessoal']
+    success_url = reverse_lazy('index')
 
-            # redireciona para index
-            return redirect('index')
-
-        # so chega aqui se nao for valido
-        # vamos devolver o form para mostrar o formulario preenchido
-        return render(request, self.template_name, {'form': form})
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Alunos, usuario=self.request.user)
+        return self.object
 
 
 class DeleteAlunoView(DeleteView):
@@ -176,6 +167,47 @@ class DeleteTurmaView(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     template_name = 'del_turma.html'
     success_url = reverse_lazy('gerenciarturma')
 
+
+# Código origina usuário
+# class CreateUsuarioView(View):
+#     model = Alunos
+#     template_name = 'registrar.html'
+#
+#     def get(self, request):
+#         return render(request, self.template_name)
+#
+#     def post(self, request):
+#         # preenche o from
+#         form = RegistrarUsuarioForm(request.POST)
+#
+#         # verifica se é valido
+#         if form.is_valid():
+#             dados_form = form.data
+#
+#             # cria o usuario
+#             usuario = User.objects.create_user(dados_form['nome'], dados_form['email'], dados_form['senha'])
+#
+#             # cria o perfil
+#             alunos = Alunos(nome=dados_form['nome'],
+#                             foto=dados_form['foto'],
+#                             cargo_atual=dados_form['cargo'],
+#                             empresa_atual=dados_form['empresa'],
+#                             rede_social=dados_form['rede'],
+#                             lattes=dados_form['lattes'],
+#                             interesses=dados_form['interesses'],
+#                             relato_pessoal=dados_form['relato'],
+#
+#                             usuario=usuario)
+#
+#             # grava no banco
+#             alunos.save()
+#
+#             # redireciona para index
+#             return redirect('index')
+#
+#         # so chega aqui se nao for valido
+#         # vamos devolver o form para mostrar o formulario preenchido
+#         return render(request, self.template_name, {'form': form})
 
 
 

@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-from .views import CoordenadorView, IndexView, listacursosview
+from .views import CoordenadorView, EgressoupdView, IndexView, listacursosview
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
@@ -10,6 +10,7 @@ urlpatterns = [
     path('perfis/<int:perfil_id>', views.exibir, name='exibir'),
     path('coordenador', CoordenadorView.as_view(), name='coordenador'),
     path('turmas/<str:turma_id>', views.listarturmasview, name='exibir_turma2'),
+    path('egresso', EgressoupdView.as_view(), name='egresso'),
 
     path('egressos/<str:egresso_id>', views.listaregressoview, name='exibir_egresso'),
 
