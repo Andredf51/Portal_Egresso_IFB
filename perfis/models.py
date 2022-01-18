@@ -4,15 +4,16 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Alunos(models.Model):
 
-    nome = models.CharField(max_length=255, null=False)
-    email = models.CharField(max_length=255, null=False)
-    foto = models.CharField(max_length=255, null=False)
-    cargo_atual = models.CharField(max_length=255, null=False)
-    empresa_atual = models.CharField(max_length=255, null=False)
-    rede_social = models.CharField(max_length=255, null=False)
-    lattes = models.CharField(max_length=255, null=False)
-    interesses = models.CharField(max_length=255, null=False)
-    relato_pessoal = models.CharField(max_length=255, null=False)
+    nome = models.CharField(max_length=150)
+    email = models.CharField(max_length=100)
+    curso = models.CharField(max_length=100)
+    foto = models.CharField(max_length=150)
+    cargo_atual = models.CharField(max_length=50)
+    empresa_atual = models.CharField(max_length=50)
+    rede_social = models.CharField(max_length=100)
+    lattes = models.CharField(max_length=100)
+    interesses = models.CharField(max_length=255)
+    relato_pessoal = models.CharField(max_length=255)
 
     contatos = models.ManyToManyField('self')
 

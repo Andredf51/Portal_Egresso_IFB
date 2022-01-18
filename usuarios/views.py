@@ -35,7 +35,7 @@ class GerenciarAlunosView(ListView):
 class CreateUsuario(CreateView):
     template_name = 'registrar.html'
     form_class = RegistrarUsuarioForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('login_aluno')
 
     # metodo para submeter formulários
     def form_valid(self, form):
@@ -73,11 +73,11 @@ class DeleteAlunoView(DeleteView):
 class CoodenadorCreate(CreateView):
     template_name = 'criar_coordenador.html'
     form_class = CoordenadorForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('login')
 
     # metodo para submeter formulários
     def form_valid(self, form):
-        grupo = get_object_or_404(Group, name='Egresso')
+        grupo = get_object_or_404(Group, name='EmAnalise')
 
         url = super().form_valid(form)
 
