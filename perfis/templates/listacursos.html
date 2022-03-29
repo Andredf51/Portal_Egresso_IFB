@@ -1,4 +1,4 @@
-
+<!--Página com lista de todos os cursos, 2 página do sistema, superier e técnico-->
 {% extends "base.html" %}
 
 {% block body %}
@@ -8,22 +8,27 @@
     <h4>Bem vindo ao sistema de Portal de Egresso do IFB, aqui você encontra os cursos oferecidos pelo instituto.</h4>
     <br>
 
-    <h2> Cursos Superiores</h2>
+    <!-- <h2> Cursos Superiores2</h2> -->
     <br>
 
-    {% for indexcurso in indexcursos %}
+    {% if indexcursos %} <!--Usado para informar se tem cursos cadastrados-->
+        {% for indexcurso in indexcursos %}
 
-    <div class="card">
-        <h5 class="card-header">{{indexcurso.nome}}</h5>
-        <div class="card-body">
-          <h5 class="card-title">{{indexcurso.nivel}}</h5>
-          <p class="card-text">Lista de cursos superiores do IFB.</p>
-          <a href="{% url 'exibir_turma2' indexcurso.id %}" class="btn btn-success">Ir para {{indexcurso.nome}}</a>
+        <div class="card">
+            <h5 class="card-header">{{indexcurso.nome}}</h5>
+            <div class="card-body">
+              <h5 class="card-title">{{indexcurso.nivel}}</h5>
+              <p class="card-text">Lista de cursos superiores do IFB.</p>
+              <a href="{% url 'exibir_turma2' indexcurso.id %}" class="btn btn-success">Ir para {{indexcurso.nome}}</a>
+            </div>
         </div>
-    </div>
-    <br>
+        <br>
 
-    {% endfor %}
+        {% endfor %}
+
+    {% else %}
+        <p>Nunhum Curso cadastrado</p>
+    {% endif %}
 
 
 </div>

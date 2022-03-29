@@ -10,31 +10,19 @@ from django.contrib.auth.forms import UserCreationForm
 
 class RegistrarUsuarioForm(UserCreationForm):
     email = forms.EmailField(max_length=100)
-    nome = forms.CharField(max_length=150)
-    curso = forms.CharField(max_length=100)
-    foto = forms.CharField(max_length=100)
-    cargo = forms.CharField(max_length=50)
-    empresa = forms.CharField(max_length=50)
-    rede = forms.CharField(max_length=50)
-    lattes = forms.CharField(max_length=100)
-    interesses = forms.CharField(max_length=100)
-    relato = forms.CharField(max_length=150)
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'nome', 'curso', 'foto', 'cargo', 'empresa', 'rede', 'lattes', 'interesses', 'relato', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
 
 
 # Formulário para coordenador
 class CoordenadorForm(UserCreationForm):
     email = forms.EmailField(max_length=100)
-    nome_completo = forms.CharField(max_length=100)
-    curso = forms.CharField(max_length=100)
-    telefone = forms.IntegerField(max_value=16)
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'nome_completo', 'curso', 'telefone', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
 
 
 class CriarTurmaForm(forms.Form):

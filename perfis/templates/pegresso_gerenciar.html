@@ -1,4 +1,4 @@
-<!--página para gerenciar os egresso, atualizar o cadastro-->
+<!--página para gerenciar os egresso, na área de egressos, atualizar o cadastro e excluir-->
 {% extends "base.html" %}
 
 {% block body %}
@@ -7,24 +7,13 @@
 
         <div class="card">
             <div class="card-header">
-                Gerenciar Cursos
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Área dedicada ao gerenciamento dos cursos do IFB.</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="/gerenciarcurso" class="btn btn-primary">Gerenciar Cursos</a>
-            </div>
-        </div>
-        <br>
-    
-        <div class="card">
-            <div class="card-header">
                 Atualizar meus dados
             </div>
             <div class="card-body">
               <h5 class="card-title">Área dedicada ao gerenciamento do perfil de usuário.</h5>
               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="/updatealuno" class="btn btn-primary">Atualizar</a>
+              <a class="btn btn-warning" href="/updatealuno">Editar</a>
+              <a class="btn btn-danger" href="/deletealuno">Delete</a>
             </div>
         </div>
           

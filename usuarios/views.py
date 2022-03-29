@@ -51,11 +51,11 @@ class CreateUsuario(CreateView):
         return url
 
 
-# Precisa ajustar pois está criando outro usuario e não atualizando
 class AlunoUpdate(UpdateView):
     template_name = 'registrar.html'
     model = Alunos
-    fields = ['nome', 'cargo_atual', 'empresa_atual', 'rede_social', 'lattes', 'interesses', 'relato_pessoal']
+    fields = ['nome', 'curso', 'cargo_atual', 'empresa_atual', 'trabalha_area', 'ifb_ajudou', 'grade_ifb', 'curso_extra',
+              'qual_curso_extra', 'opiniao_curso_ifb', 'pode_melhorar', 'rede_social', 'lattes']
     success_url = reverse_lazy('index')
 
     def get_object(self, queryset=None):
@@ -63,10 +63,23 @@ class AlunoUpdate(UpdateView):
         return self.object
 
 
+
+# Delete da página do coordenado, aqui o coordenar apaga o aluno
 class DeleteAlunoView(DeleteView):
     model = Alunos
     template_name = 'del_aluno.html'
     success_url = reverse_lazy('gerenciaraluno')
+
+
+# Delete da página do egresso
+class DeleteAlunoEgresso(DeleteView):
+    model = Alunos
+    template_name = 'del_aluno.html'
+    success_url = reverse_lazy('gerenciaraluno')
+
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Alunos, usuario=self.request.user)
+        return self.object
 
 
 ################# Coordenador ###############################
@@ -93,6 +106,16 @@ class CoordenadorUpdate(UpdateView):
     template_name = 'criar_coordenador.html'
     model = PerfilCoordenador
     fields = ['nome_completo', 'curso', 'telefone']
+    success_url = reverse_lazy('index')
+
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(PerfilCoordenador, usuario=self.request.user)
+        return self.object
+
+
+class DeleteCoordenador(DeleteView):
+    model = PerfilCoordenador
+    template_name = 'del_coordenador.html'
     success_url = reverse_lazy('index')
 
     def get_object(self, queryset=None):

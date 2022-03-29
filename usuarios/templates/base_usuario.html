@@ -14,7 +14,7 @@
   <body>
     <div class="container">
 
-      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #469536;">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #469536">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'index' %}">Home</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -23,14 +23,16 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#">Egresso</a>
+              <a class="nav-link active" aria-current="page" href="egresso">Egresso</a>
               <a class="nav-link" href="/coordenador">Coordenador</a>
               {% if request.user.is_authenticated %}
               <a class="nav-link" href="/logout">Logout</a>
               {% endif %}
-              <a class="nav-link disabled">Disabled</a>
             </div>
           </div>
+        </div>
+        <div class="navbar-brand">
+          <span>{{ request.user }}</span>
         </div>
       </nav>
 
@@ -41,5 +43,13 @@
       </div>
 
     </div>
+       <!--Rodapé-->
+      <footer class="page-footer font-small mdb-color lighten-3 pt-4">
+      <hr>
+
+        <div class="text-center" style="background-color: #dbead5; padding: 20px;" >
+          <p>Desenvolvido por <a href="https://github.com/Andredf51" target="_blank"> André Luiz </a> &copy; 2021</p>
+        </div>
+      </footer>
   </body>
 </html>

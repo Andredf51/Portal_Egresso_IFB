@@ -3,6 +3,15 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Alunos(models.Model):
+    TrabalhaArea_CHOICES = (
+        ('Sim', 'Sim'),
+        ('Nao', 'Não'),
+        ('EmParte', 'Em parte'),
+    )
+    CursoExtra_CHOICES = (
+        ('Sim', 'Sim'),
+        ('Nao', 'Não'),
+    )
 
     nome = models.CharField(max_length=150)
     email = models.CharField(max_length=100)
@@ -10,10 +19,17 @@ class Alunos(models.Model):
     foto = models.CharField(max_length=150)
     cargo_atual = models.CharField(max_length=50)
     empresa_atual = models.CharField(max_length=50)
+    trabalha_area = models.CharField(max_length=8, choices=TrabalhaArea_CHOICES)
+    ifb_ajudou = models.CharField(max_length=8, choices=TrabalhaArea_CHOICES)
+    grade_ifb = models.CharField(max_length=10)
+    curso_extra = models.CharField(max_length=10, choices=CursoExtra_CHOICES)
+    qual_curso_extra = models.CharField(max_length=30)
+    opiniao_curso_ifb = models.CharField(max_length=100)
+    pode_melhorar = models.CharField(max_length=100)
     rede_social = models.CharField(max_length=100)
     lattes = models.CharField(max_length=100)
-    interesses = models.CharField(max_length=255)
-    relato_pessoal = models.CharField(max_length=255)
+    validado = models.CharField(max_length=5)
+
 
     contatos = models.ManyToManyField('self')
 
