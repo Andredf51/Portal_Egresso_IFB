@@ -5,7 +5,7 @@ from usuarios.views import CreateUsuario, CreateCursosView, DeleteCursoView, Del
 from django.contrib.auth import views as auth_views
 
 from .views import CreateTurmaView, GerenciarCursosView, UpdateCursoView, GerenciarTurmaView, UpdateTurmaView, \
-    GerenciarAlunosView, CoodenadorCreate, CoordenadorUpdate, AlunoUpdate, DeleteCoordenador, DeleteAlunoEgresso
+    GerenciarAlunosView, CoodenadorCreate, CoordenadorUpdate, AlunoUpdate, DeleteCoordenador, DeleteAlunoEgresso, UpdateEgressoView
 
 urlpatterns = [
     # Criar usuários
@@ -13,7 +13,7 @@ urlpatterns = [
     path('registrar/', CreateUsuario.as_view(), name='registrar'),
     path('<int:pk>/deletea/', DeleteAlunoView.as_view(), name='del_aluno'),
     path('updatealuno/', AlunoUpdate.as_view(), name='upd_aluno2'),
-    path('<int:pk>/updatea/', AlunoUpdate.as_view(), name='upd_aluno'),
+    path('<int:pk>/updatea/', UpdateEgressoView.as_view(), name='upd_aluno'),
     path('deletealuno/', DeleteAlunoEgresso.as_view(), name='del_aluno2'),
     path('criarcoordenador/', CoodenadorCreate.as_view(), name='criar_coordenador'),
     path('updatecoordenador/', CoordenadorUpdate.as_view(), name='upd_coordenador'),

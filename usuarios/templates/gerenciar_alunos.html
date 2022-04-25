@@ -13,7 +13,7 @@
                 Gerenciar Egressos
             </div>
             <div class="card-body">
-              <h5 class="card-title">Área dedicada ao regenciamento de egressos do IFB.</h5>
+              <h5 class="card-title">Área dedicada ao regenciamento de egressos do IFB, pelo coordenador do curso.</h5>
               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
               <a href="/registrar" class="btn btn-primary">Criar Egresso</a>
             </div>
@@ -34,11 +34,9 @@
         <div class="card-body">
           <h5 class="card-title">Cargo Atual: {{listaraluno.cargo_atual }}</h5>
           <h5 class="card-title">Empresa Atual: {{listaraluno.empresa_atual }}</h5>
-          <h5 class="card-title">Rede Socia: {{listaraluno.rede_social}}</h5>
-          <h5 class="card-title">Lattes: {{listaraluno.lattes}}</h5>
           <h5 class="card-title">Interesses: {{listaraluno.interesses}}</h5>
           <h5 class="card-title">Relato Pessoal: {{listaraluno.relato_pessoal }}</h5>
-          <h5 class="card-title">Foto: {{listaraluno.foto }}</h5>
+          <h5 class="card-title">Validado?: {{listaraluno.validado }}</h5>
             <a class="btn btn-warning" href="{% url 'upd_aluno' listaraluno.pk%}">Editar</a>
             <a class="btn btn-danger" href="{% url 'del_aluno' listaraluno.pk%}">Delete</a>
 

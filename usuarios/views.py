@@ -63,6 +63,14 @@ class AlunoUpdate(UpdateView):
         return self.object
 
 
+# Update do Egresso na página do coordenador (teste)
+class UpdateEgressoView(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('login')
+    group_required = u"Coordenador"
+    model = Alunos
+    template_name = 'registrar.html'
+    fields = ['nome', 'curso', 'validado']
+    success_url = reverse_lazy('index')
 
 # Delete da página do coordenado, aqui o coordenar apaga o aluno
 class DeleteAlunoView(DeleteView):
